@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TESA OAU — Technology & Engineering Students Association</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #0A1628;
+    --blue-mid: #0D2657;
+    --blue-bright: #1A4FC4;
+    --blue-accent: #2563EB;
+    --blue-light: #3B82F6;
+    --gold: #F59E0B;
+    --gold-light: #FCD34D;
+    --white: #F8FAFF;
+    --gray: #94A3B8;
+    --gray-light: #CBD5E1;
+    --text-dim: #64748B;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--blue);
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER ─────────────────────────── */
+  header {
+    position: fixed; top: 0; width: 100%; z-index: 999;
+    background: rgba(10, 22, 40, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(37, 99, 235, 0.3);
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .logo-badge {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--blue-bright), var(--blue-light));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; color: white; letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(37,99,235,0.5);
+  }
+  .logo-text { color: white; }
+  .logo-text strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--blue-light); }
+  .logo-text span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+
+  nav { display: flex; gap: 36px; }
+  nav a {
+    color: var(--gray-light); font-size: 13px; font-weight: 500;
+    text-decoration: none; letter-spacing: 1px; text-transform: uppercase;
+    transition: color .2s; position: relative;
+  }
+  nav a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 2px; background: var(--blue-light);
+    transition: width .3s;
+  }
+  nav a:hover { color: white; }
+  nav a:hover::after { width: 100%; }
+
+  .header-cta {
+    background: var(--blue-accent); color: white;
+    border: none; padding: 10px 24px; border-radius: 6px;
+    font-size: 13px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; cursor: pointer;
+    transition: all .3s; text-decoration: none;
+    display: inline-block;
+  }
+  .header-cta:hover { background: var(--blue-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(37,99,235,0.4); }
+
+  /* ─── HERO ───────────────────────────── */
+  #home {
+    min-height: 100vh;
+    background: var(--blue);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding-top: 72px;
+  }
+
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(37,99,235,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow-1 {
+    position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow-2 {
+    position: absolute; bottom: -150px; left: 10%;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; padding: 80px 40px;
+    display: grid; grid-template-columns: 1fr 420px; gap: 80px;
+    align-items: center; position: relative; z-index: 2;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(37,99,235,0.2); border: 1px solid rgba(37,99,235,0.4);
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 32px;
+  }
+  .hero-eyebrow span { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue-light); font-weight: 600; }
+  .hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 7vw, 90px);
+    line-height: 1.0; font-weight: 900;
+    color: white; margin-bottom: 28px;
+  }
+  .hero-title em { font-style: italic; color: var(--blue-light); }
+  .hero-title .gold { color: var(--gold); }
+
+  .hero-desc {
+    font-size: 17px; line-height: 1.8; color: var(--gray);
+    max-width: 520px; margin-bottom: 48px;
+  }
+
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue-accent); color: white;
+    padding: 16px 36px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; letter-spacing: .5px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all .3s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(37,99,235,0.4); }
+  .btn-ghost {
+    background: transparent; color: white;
+    padding: 16px 36px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; letter-spacing: .5px;
+    text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
+    transition: all .3s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-ghost:hover { border-color: var(--blue-light); color: var(--blue-light); }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 56px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item {}
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: white; line-height: 1; }
+  .stat-num span { color: var(--blue-light); }
+  .stat-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-top: 4px; }
+
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(37,99,235,0.3);
+    border-radius: 20px; padding: 36px;
+    backdrop-filter: blur(10px);
+    position: relative; overflow: hidden;
+  }
+  .hero-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue-accent), var(--gold));
+  }
+  .hero-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: white; margin-bottom: 24px; }
+  .event-item { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .event-item:last-child { border-bottom: none; }
+  .event-date { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 6px; }
+  .event-name { font-size: 14px; font-weight: 600; color: white; margin-bottom: 4px; }
+  .event-venue { font-size: 12px; color: var(--gray); }
+  .event-badge { display: inline-block; padding: 2px 10px; border-radius: 100px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 6px; }
+  .badge-live { background: rgba(34,197,94,0.2); color: #4ADE80; border: 1px solid rgba(34,197,94,0.3); }
+  .badge-upcoming { background: rgba(245,158,11,0.2); color: var(--gold); border: 1px solid rgba(245,158,11,0.3); }
+
+  /* ─── SECTIONS COMMON ───────────────── */
+  section { padding: 100px 40px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--blue-accent); font-weight: 700; margin-bottom: 16px;
+  }
+  .section-tag::before { content: ''; width: 24px; height: 2px; background: var(--blue-accent); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 900; line-height: 1.1;
+    color: var(--blue); margin-bottom: 16px;
+  }
+  .section-title em { font-style: italic; color: var(--blue-accent); }
+
+  /* ─── NEWS SECTION ───────────────────── */
+  #news { background: #F1F5FD; }
+
+  .news-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+  .news-header-left { max-width: 500px; }
+  .news-header p { font-size: 16px; color: var(--text-dim); line-height: 1.7; margin-top: 12px; }
+
+  .news-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+
+  /* Featured Article */
+  .featured-article {
+    background: white; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 4px 30px rgba(10,22,40,0.08);
+    transition: transform .3s, box-shadow .3s;
+    display: flex; flex-direction: column;
+  }
+  .featured-article:hover { transform: translateY(-4px); box-shadow: 0 16px 50px rgba(10,22,40,0.15); }
+  .featured-img {
+    height: 320px; background: linear-gradient(135deg, var(--blue-mid), var(--blue-accent));
+    position: relative; overflow: hidden;
+  }
+  .featured-img img { width: 100%; height: 100%; object-fit: cover; }
+  .featured-img-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #0D2657, #1A4FC4, #2563EB);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 80px;
+    color: rgba(255,255,255,0.15); letter-spacing: 4px;
+  }
+  .featured-cat {
+    position: absolute; top: 20px; left: 20px;
+    background: var(--blue-accent); color: white;
+    padding: 4px 14px; border-radius: 100px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .featured-body { padding: 36px; flex: 1; display: flex; flex-direction: column; }
+  .article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
+  .article-meta time { font-size: 12px; color: var(--text-dim); }
+  .article-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gray-light); }
+  .article-meta .reading { font-size: 12px; color: var(--text-dim); }
+  .featured-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 700; line-height: 1.3;
+    color: var(--blue); margin-bottom: 16px;
+  }
+  .featured-body p { font-size: 15px; line-height: 1.8; color: var(--text-dim); flex: 1; margin-bottom: 28px; }
+  .read-more {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--blue-accent); font-weight: 700; font-size: 14px;
+    text-decoration: none; letter-spacing: .5px;
+    transition: gap .2s;
+  }
+  .read-more:hover { gap: 14px; }
+  .read-more svg { transition: transform .2s; }
+  .read-more:hover svg { transform: translateX(4px); }
+
+  /* Sidebar Articles */
+  .news-sidebar { display: flex; flex-direction: column; gap: 20px; }
+  .small-article {
+    background: white; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 16px rgba(10,22,40,0.06);
+    transition: all .3s; cursor: pointer;
+    display: flex; flex-direction: column;
+  }
+  .small-article:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(10,22,40,0.12); }
+  .small-img {
+    height: 120px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 40px;
+    color: rgba(255,255,255,0.2); letter-spacing: 2px;
+  }
+  .small-body { padding: 16px 20px; }
+  .small-cat { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue-accent); margin-bottom: 8px; }
+  .small-body h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; line-height: 1.4; color: var(--blue); margin-bottom: 8px; }
+  .small-body time { font-size: 11px; color: var(--text-dim); }
+
+  /* ─── EXECUTIVES ─────────────────────── */
+  #executives { background: var(--blue); overflow: hidden; }
+  #executives .section-title { color: white; }
+  #executives .section-tag { color: var(--gold); }
+  #executives .section-tag::before { background: var(--gold); }
+
+  .exec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+  .exec-header p { font-size: 16px; color: var(--gray); line-height: 1.7; margin-top: 12px; max-width: 440px; }
+
+  .carousel-wrapper { position: relative; }
+  .carousel-track {
+    display: flex; gap: 24px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; padding-bottom: 8px;
+    scroll-behavior: smooth;
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+
+  .exec-card {
+    flex: 0 0 260px; scroll-snap-align: start;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 20px; overflow: hidden;
+    transition: all .3s; cursor: pointer;
+    position: relative;
+  }
+  .exec-card:hover { transform: translateY(-6px); border-color: rgba(37,99,235,0.5); background: rgba(255,255,255,0.08); }
+  .exec-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,22,40,0.9) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .exec-photo {
+    width: 100%; height: 280px; object-fit: cover;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .exec-photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 72px;
+  }
+  .exec-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 24px 20px; z-index: 2;
+  }
+  .exec-position { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+  .exec-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .exec-dept { font-size: 12px; color: var(--gray); }
+
+  .carousel-controls { display: flex; gap: 12px; margin-top: 40px; }
+  .carousel-btn {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent; color: white; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; transition: all .3s;
+  }
+  .carousel-btn:hover { background: var(--blue-accent); border-color: var(--blue-accent); }
+
+  /* ─── SUBSCRIPTION ───────────────────── */
+  #subscribe { background: white; padding: 100px 40px; }
+  .subscribe-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .subscribe-left .section-title { margin-bottom: 16px; }
+  .subscribe-left p { font-size: 16px; color: var(--text-dim); line-height: 1.8; margin-bottom: 32px; }
+  .benefits { display: flex; flex-direction: column; gap: 16px; }
+  .benefit { display: flex; align-items: center; gap: 14px; }
+  .benefit-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(37,99,235,0.1); display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .benefit span { font-size: 14px; color: var(--text-dim); }
+
+  .subscribe-form-box {
+    background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+    border-radius: 24px; padding: 48px; position: relative; overflow: hidden;
+  }
+  .subscribe-form-box::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(37,99,235,0.3);
+  }
+  .subscribe-form-box h3 { font-family: 'Playfair Display', serif; font-size: 28px; color: white; margin-bottom: 8px; position: relative; z-index: 1; }
+  .subscribe-form-box p { font-size: 14px; color: var(--gray); margin-bottom: 32px; position: relative; z-index: 1; }
+  .form-group { display: flex; flex-direction: column; gap: 14px; position: relative; z-index: 1; }
+  .form-row { display: flex; flex-direction: column; gap: 6px; }
+  .form-row label { font-size: 12px; font-weight: 600; color: var(--gray-light); letter-spacing: 1px; text-transform: uppercase; }
+  .form-row input, .form-row select {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 14px 18px;
+    color: white; font-family: 'DM Sans', sans-serif; font-size: 14px;
+    outline: none; transition: border-color .2s;
+    width: 100%;
+  }
+  .form-row input::placeholder { color: rgba(255,255,255,0.3); }
+  .form-row input:focus, .form-row select:focus { border-color: var(--blue-light); }
+  .form-row select option { background: var(--blue-mid); color: white; }
+  .btn-submit {
+    width: 100%; background: var(--gold); color: var(--blue);
+    border: none; border-radius: 10px; padding: 16px;
+    font-size: 15px; font-weight: 700; cursor: pointer;
+    transition: all .3s; letter-spacing: .5px; margin-top: 4px;
+  }
+  .btn-submit:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,158,11,0.4); }
+  .privacy-note { font-size: 11px; color: var(--gray); text-align: center; margin-top: 16px; position: relative; z-index: 1; }
+
+  /* ─── FOOTER ─────────────────────────── */
+  footer {
+    background: #050D1A;
+    color: var(--gray);
+    padding: 80px 40px 40px;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+  .footer-brand p { font-size: 14px; line-height: 1.8; margin: 20px 0 28px; max-width: 300px; }
+  .social-links { display: flex; gap: 12px; }
+  .social-link {
+    width: 40px; height: 40px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray); font-size: 16px; transition: all .3s;
+    text-decoration: none;
+  }
+  .social-link:hover { border-color: var(--blue-accent); color: var(--blue-accent); background: rgba(37,99,235,0.1); }
+  .footer-col h4 { font-size: 13px; font-weight: 700; color: white; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-col ul li a { color: var(--gray); font-size: 14px; text-decoration: none; transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--blue-light); }
+  .footer-divider { height: 1px; background: rgba(255,255,255,0.07); margin-bottom: 32px; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-bottom p { font-size: 13px; }
+  .footer-bottom a { color: var(--blue-light); text-decoration: none; }
+  .oau-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.3);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 12px; color: var(--blue-light); font-weight: 600;
+  }
+
+  /* ─── BLOG PAGE ──────────────────────── */
+  #blog-page { display: none; }
+  #blog-page.active { display: block; }
+  #main-page { display: block; }
+  #main-page.hidden { display: none; }
+
+  .blog-hero {
+    background: var(--blue); min-height: 340px;
+    display: flex; align-items: center;
+    padding: 120px 40px 80px;
+    position: relative; overflow: hidden;
+  }
+  .blog-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+  .blog-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 72px);
+    color: white; font-weight: 900; line-height: 1.1; margin-bottom: 16px;
+  }
+  .blog-hero h1 em { color: var(--blue-light); font-style: italic; }
+  .blog-hero p { font-size: 17px; color: var(--gray); max-width: 500px; line-height: 1.7; }
+
+  .blog-filters { padding: 40px; background: white; border-bottom: 1px solid #E2E8F0; }
+  .blog-filters-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .filter-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-right: 8px; }
+  .filter-btn {
+    padding: 8px 20px; border-radius: 100px; border: 1px solid #E2E8F0;
+    background: white; color: var(--text-dim); font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all .2s;
+  }
+  .filter-btn:hover, .filter-btn.active { background: var(--blue-accent); border-color: var(--blue-accent); color: white; }
+
+  .blog-main { max-width: 1200px; margin: 0 auto; padding: 60px 40px; }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .blog-card {
+    background: white; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 2px 20px rgba(10,22,40,0.07);
+    transition: all .3s; cursor: pointer;
+    border: 1px solid #F1F5F9;
+  }
+  .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(10,22,40,0.12); }
+  .blog-card-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 48px; position: relative; }
+  .blog-card-cat { position: absolute; top: 14px; left: 14px; background: var(--blue-accent); color: white; padding: 3px 12px; border-radius: 100px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .blog-card-body { padding: 24px; }
+  .blog-card-body h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--blue); line-height: 1.4; margin-bottom: 10px; }
+  .blog-card-body p { font-size: 14px; color: var(--text-dim); line-height: 1.7; margin-bottom: 20px; }
+  .blog-card-footer { display: flex; justify-content: space-between; align-items: center; }
+  .blog-card-footer time { font-size: 12px; color: var(--gray); }
+  .blog-card-footer .read-more { font-size: 13px; }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 32px; right: 32px; z-index: 9999;
+    background: #10B981; color: white; padding: 16px 24px;
+    border-radius: 12px; box-shadow: 0 8px 30px rgba(16,185,129,0.4);
+    font-size: 14px; font-weight: 600; transform: translateY(100px); opacity: 0;
+    transition: all .4s cubic-bezier(.34,1.56,.64,1);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* Responsive tweaks */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-card { display: none; }
+    .news-grid { grid-template-columns: 1fr; }
+    .news-sidebar { flex-direction: row; overflow-x: auto; }
+    .small-article { flex: 0 0 260px; }
+    .subscribe-inner { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Subscribed! Welcome to TESA OAU</div>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo" onclick="showMain()">
+    <div class="logo-badge">TESA</div>
+    <div class="logo-text">
+      <strong>TESA OAU</strong>
+      <span>Obafemi Awolowo University</span>
+    </div>
+  </a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#news">News</a>
+    <a href="#executives">Executives</a>
+    <a href="#subscribe">Newsletter</a>
+    <a href="#" onclick="showBlog(); return false;">Blog</a>
+  </nav>
+  <a href="#subscribe" class="header-cta">Join Us</a>
+</header>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- MAIN PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="main-page">
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="hero-dot"></div>
+        <span>OAU's Premier Tech Community</span>
+      </div>
+      <h1 class="hero-title">
+        Where <em>Engineers</em><br>
+        Build the<br>
+        <span class="gold">Future.</span>
+      </h1>
+      <p class="hero-desc">
+        TESA OAU unites technology and engineering students at Obafemi Awolowo University — fostering innovation, professional development, and lifelong connections across every department.
+      </p>
+      <div class="hero-btns">
+        <a href="#executives" class="btn-primary">
+          Meet the Team
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#" onclick="showBlog(); return false;" class="btn-ghost">
+          Read Articles
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">2<span>K+</span></div>
+          <div class="stat-label">Members</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">15<span>+</span></div>
+          <div class="stat-label">Departments</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">40<span>+</span></div>
+          <div class="stat-label">Events / Year</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Card -->
+    <div class="hero-card">
+      <h3>Upcoming Events 🗓</h3>
+      <div class="event-item">
+        <div class="event-date">15 Mar 2025</div>
+        <div class="event-name">TESA Tech Summit 2025</div>
+        <div class="event-venue">📍 OAU Main Auditorium</div>
+        <span class="event-badge badge-upcoming">Upcoming</span>
+      </div>
+      <div class="event-item">
+        <div class="event-date">22 Mar 2025</div>
+        <div class="event-name">Hackathon: Build for Nigeria</div>
+        <div class="event-venue">📍 Engineering Complex</div>
+        <span class="event-badge badge-live">Registration Open</span>
+      </div>
+      <div class="event-item">
+        <div class="event-date">5 Apr 2025</div>
+        <div class="event-name">Career Fair & Networking Night</div>
+        <div class="event-venue">📍 Faculty of Technology</div>
+        <span class="event-badge badge-upcoming">Upcoming</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS SECTION -->
+<section id="news">
+  <div class="section-inner">
+    <div class="news-header">
+      <div class="news-header-left">
+        <div class="section-tag">Latest News</div>
+        <h2 class="section-title">Stories from<br><em>Our Community</em></h2>
+        <p>Stay updated with the latest happenings, achievements, and announcements from TESA OAU.</p>
+      </div>
+      <a href="#" onclick="showBlog(); return false;" class="read-more" style="font-size:15px">
+        View All Articles
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="news-grid">
+      <!-- Featured Article -->
+      <div class="featured-article" onclick="showBlog()">
+        <div class="featured-img">
+          <div class="featured-img-placeholder">TESA</div>
+          <div class="featured-cat">Featured</div>
+        </div>
+        <div class="featured-body">
+          <div class="article-meta">
+            <time>March 10, 2025</time>
+            <div class="dot"></div>
+            <span class="reading">5 min read</span>
+          </div>
+          <h2>TESA OAU Hosts Groundbreaking AI Workshop — Over 400 Students Participate in Record-Breaking Event</h2>
+          <p>In a landmark event that underscored TESA OAU's commitment to cutting-edge technology education, over 400 engineering students gathered at the Faculty of Technology for an intensive two-day workshop on Artificial Intelligence and Machine Learning applications in modern engineering practice...</p>
+          <a href="#" onclick="showBlog(); return false;" class="read-more">
+            Read Full Article
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sidebar Articles -->
+      <div class="news-sidebar">
+        <div class="small-article" onclick="showBlog()">
+          <div class="small-img" style="background: linear-gradient(135deg,#0D2657,#0EA5E9)">🏆</div>
+          <div class="small-body">
+            <div class="small-cat">Achievement</div>
+            <h3>TESA Members Win National Engineering Competition</h3>
+            <time>March 7, 2025</time>
+          </div>
+        </div>
+        <div class="small-article" onclick="showBlog()">
+          <div class="small-img" style="background: linear-gradient(135deg,#1A1A2E,#8B5CF6)">💻</div>
+          <div class="small-body">
+            <div class="small-cat">Event</div>
+            <h3>Annual Hackathon Registration Now Open for All Students</h3>
+            <time>March 5, 2025</time>
+          </div>
+        </div>
+        <div class="small-article" onclick="showBlog()">
+          <div class="small-img" style="background: linear-gradient(135deg,#064E3B,#059669)">🤝</div>
+          <div class="small-body">
+            <div class="small-cat">Partnership</div>
+            <h3>New Industry Partnership Opens Internship Doors for Members</h3>
+            <time>March 2, 2025</time>
+          </div>
+        </div>
+        <div class="small-article" onclick="showBlog()">
+          <div class="small-img" style="background: linear-gradient(135deg,#7C2D12,#EA580C)">📡</div>
+          <div class="small-body">
+            <div class="small-cat">Research</div>
+            <h3>TESA Research Team Presents at International Conference</h3>
+            <time>Feb 28, 2025</time>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXECUTIVES SECTION -->
+<section id="executives">
+  <div class="section-inner">
+    <div class="exec-header">
+      <div>
+        <div class="section-tag">Leadership</div>
+        <h2 class="section-title">Meet the TESA<br><em>Executives</em></h2>
+        <p>The dedicated student leaders driving TESA OAU's mission of innovation and excellence.</p>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="scrollCarousel(-1)" aria-label="Previous">&#8592;</button>
+        <button class="carousel-btn" onclick="scrollCarousel(1)" aria-label="Next">&#8594;</button>
+      </div>
+    </div>
+
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="execCarousel">
+
+        <div class="exec-card">
+          <div class="exec-photo">
+            <div class="exec-photo-placeholder" style="background:linear-gradient(160deg,#0D2657,#1A4FC4)">👨‍💼</div>
+          </div>
+          <div class="exec-info">
+            <div class="exec-position">President</div>
+            <div class="exec-name">Adeyemi Olawale</div>
+            <div class="exec-dept">Mechanical Engineering</div>
+          </div>
+        </div>
+
+        <div class="exec-card">
+          <div class="exec-photo">
+            <div class="exec-photo-placeholder" style="background:linear-gradient(160deg,#1A1A2E,#4F46E5)">👩‍💼</div>
+          </div>
+          <div class="exec-info">
+            <div class="exec-position">Vice President</div>
+            <div class="exec-name">Chioma Nwosu</div>
+            <div class="exec-dept">Electrical Engineering</div>
+          </div>
+        </div>
+
+        <div class="exec-card">
+          <div class="exec-photo">
+            <div class="exec-photo-placeholder" style="background:linear-gradient(160deg,#064E3B,#065F46)">👨‍💻</div>
+          </div>
+          <div class="exec-info">
+            <div class="exec-position">General Secretary</div>
+            <div class="exec-name">Ibrahim Musa</div>
+            <div class="exec-dept">Computer Engineering</div>
+          </div>
+        </div>
+
+        <div class="exec-card">
+          <div class="exec-photo">
+            <div class="exec-photo-placeholder" style="background:linear-gradient(160deg,#7C2D12,#9A3412)">👩‍🔬</div>
+          </div>
+          <div class="exec-info">
+            <div class="exec-position">Financial Secretary</div>
+            <div class="exec-name">Blessing Okafor</div>
+            <div class="exec-dept">Chemical Engineering</div>
+          </div>
+        </div>
+
+        <div class="exec-card">
+          <div class="exec-photo">
+            <div class="exec-photo-placeholder" style="background:linear-gradient(160deg,#312E81,#5B21B6)">👨‍🎨</div>
+          </div>
+          <div class="exec-info">
+            <div class="exec-position">Public Relations Officer</div>
+            <div class="exec-name">Seun Adeleke</div>
+            <div class="exec-dept">Civil Engineering</div>
+          </div>
+        </div>
+
+        <div class="exec-card">
+          <div class="exec-photo">
+            <div class="exec-photo-placeholder" style="background:linear-gradient(160deg,#134E4A,#0F766E)">👩‍🏫</div>
+          </div>
+          <div class="exec-info">
+            <div class="exec-position">Academic Director</div>
+            <div class="exec-name">Fatima Abdullahi</div>
+            <div class="exec-dept">Systems Engineering</div>
+          </div>
+        </div>
+
+        <div class="exec-card">
+          <div class="exec-photo">
+            <div class="exec-photo-placeholder" style="background:linear-gradient(160deg,#1C1917,#44403C)">👨‍🚀</div>
+          </div>
+          <div class="exec-info">
+            <div class="exec-position">Social Director</div>
+            <div class="exec-name">Emeka Igwe</div>
+            <div class="exec-dept">Agricultural Engineering</div>
+          </div>
+        </div>
+
+        <div class="exec-card">
+          <div class="exec-photo">
+            <div class="exec-photo-placeholder" style="background:linear-gradient(160deg,#450A0A,#991B1B)">👩‍💡</div>
+          </div>
+          <div class="exec-info">
+            <div class="exec-position">Tech Director</div>
+            <div class="exec-name">Yewande Fashola</div>
+            <div class="exec-dept">Electronic Engineering</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIBE SECTION -->
+<section id="subscribe">
+  <div class="subscribe-inner">
+    <div class="subscribe-left">
+      <div class="section-tag">Newsletter</div>
+      <h2 class="section-title">Never Miss a<br><em>TESA Update</em></h2>
+      <p>Be the first to know about events, opportunities, research breakthroughs, and everything happening in TESA OAU's vibrant engineering community.</p>
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon">📰</div>
+          <span>Weekly curated articles from our editorial team</span>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🎯</div>
+          <span>Exclusive event invitations & early registration</span>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">💼</div>
+          <span>Internship & career opportunities for members</span>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🏆</div>
+          <span>Competition alerts & scholarship announcements</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subscribe-form-box">
+      <h3>Stay in the Loop</h3>
+      <p>Join 1,200+ students already subscribed.</p>
+      <div class="form-group">
+        <div class="form-row">
+          <label>Full Name</label>
+          <input type="text" id="sub-name" placeholder="e.g. Adaeze Okonkwo">
+        </div>
+        <div class="form-row">
+          <label>OAU Email Address</label>
+          <input type="email" id="sub-email" placeholder="yourname@oauife.edu.ng">
+        </div>
+        <div class="form-row">
+          <label>Department</label>
+          <select id="sub-dept">
+            <option value="">Select your department</option>
+            <option>Mechanical Engineering</option>
+            <option>Electrical Engineering</option>
+            <option>Computer Engineering</option>
+            <option>Chemical Engineering</option>
+            <option>Civil Engineering</option>
+            <option>Electronic Engineering</option>
+            <option>Agricultural Engineering</option>
+            <option>Systems Engineering</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button class="btn-submit" onclick="handleSubscribe()">Subscribe to Newsletter 🚀</button>
+      </div>
+      <p class="privacy-note">🔒 No spam, ever. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-badge">TESA</div>
+          <div class="logo-text">
+            <strong>TESA OAU</strong>
+            <span>Obafemi Awolowo University</span>
+          </div>
+        </div>
+        <p>The Technology & Engineering Students Association at Obafemi Awolowo University — building the next generation of African engineers and innovators since 1985.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Twitter/X">𝕏</a>
+          <a href="#" class="social-link" title="Instagram">📷</a>
+          <a href="#" class="social-link" title="LinkedIn">in</a>
+          <a href="#" class="social-link" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#news">News & Blog</a></li>
+          <li><a href="#executives">Executives</a></li>
+          <li><a href="#subscribe">Newsletter</a></li>
+          <li><a href="#" onclick="showBlog(); return false;">All Articles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="#">Hackathons</a></li>
+          <li><a href="#">Workshops</a></li>
+          <li><a href="#">Mentorship</a></li>
+          <li><a href="#">Tech Talks</a></li>
+          <li><a href="#">Career Fair</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:tesa@oauife.edu.ng">tesa@oauife.edu.ng</a></li>
+          <li><a href="#">Faculty of Technology</a></li>
+          <li><a href="#">OAU, Ile-Ife</a></li>
+          <li><a href="#">Osun State, Nigeria</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p>© 2025 TESA OAU. All rights reserved. Made with ❤️ for <a href="#">OAU Engineers</a>.</p>
+      <div class="oau-badge">🎓 Obafemi Awolowo University, Ile-Ife</div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- end #main-page -->
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOG PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="blog-page">
+
+  <div class="blog-hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow-1"></div>
+    <div class="blog-hero-inner">
+      <div class="section-tag" style="color:var(--gold)">TESA OAU Articles</div>
+      <h1>The <em>Engineering</em><br>Digest</h1>
+      <p>Insights, achievements, tutorials, and stories from TESA OAU's thriving engineering community.</p>
+    </div>
+  </div>
+
+  <div class="blog-filters">
+    <div class="blog-filters-inner">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="filterBlog(this)">All</button>
+      <button class="filter-btn" onclick="filterBlog(this)">Technology</button>
+      <button class="filter-btn" onclick="filterBlog(this)">Events</button>
+      <button class="filter-btn" onclick="filterBlog(this)">Research</button>
+      <button class="filter-btn" onclick="filterBlog(this)">Achievement</button>
+      <button class="filter-btn" onclick="filterBlog(this)">Career</button>
+      <button class="filter-btn" onclick="filterBlog(this)">Partnership</button>
+    </div>
+  </div>
+
+  <div class="blog-main">
+    <div class="blog-grid">
+
+      <div class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#0D2657,#1A4FC4)">
+          🤖
+          <div class="blog-card-cat">Technology</div>
+        </div>
+        <div class="blog-card-body">
+          <h3>TESA OAU Hosts Groundbreaking AI Workshop with 400+ Participants</h3>
+          <p>In a landmark event, over 400 engineering students gathered for an intensive two-day workshop on AI and machine learning applications...</p>
+          <div class="blog-card-footer">
+            <time>March 10, 2025</time>
+            <a href="#" class="read-more">Read More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#1A1A2E,#4F46E5)">
+          🏆
+          <div class="blog-card-cat">Achievement</div>
+        </div>
+        <div class="blog-card-body">
+          <h3>TESA Members Win 1st Place at National Engineering Competition in Lagos</h3>
+          <p>A five-member team from TESA OAU brought home gold at the Nigerian Engineering Innovation Challenge, defeating 47 universities...</p>
+          <div class="blog-card-footer">
+            <time>March 7, 2025</time>
+            <a href="#" class="read-more">Read More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#312E81,#6D28D9)">
+          💻
+          <div class="blog-card-cat">Events</div>
+        </div>
+        <div class="blog-card-body">
+          <h3>Annual Hackathon 2025: Registration Open — "Build for Nigeria" Theme Announced</h3>
+          <p>TESA OAU's flagship hackathon returns bigger than ever with a ₦500,000 prize pool and an inspiring theme focused on solving Nigeria's...</p>
+          <div class="blog-card-footer">
+            <time>March 5, 2025</time>
+            <a href="#" class="read-more">Read More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#064E3B,#059669)">
+          🤝
+          <div class="blog-card-cat">Partnership</div>
+        </div>
+        <div class="blog-card-body">
+          <h3>New Industry Partnership Opens Internship Doors for 50+ TESA Members</h3>
+          <p>TESA OAU has signed a landmark Memorandum of Understanding with three leading Nigerian tech firms, creating exclusive internship pipelines...</p>
+          <div class="blog-card-footer">
+            <time>March 2, 2025</time>
+            <a href="#" class="read-more">Read More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#7C2D12,#C2410C)">
+          📡
+          <div class="blog-card-cat">Research</div>
+        </div>
+        <div class="blog-card-body">
+          <h3>TESA Research Team Presents Solar Microgrid Study at IEEE Conference</h3>
+          <p>A groundbreaking research paper on rural solar microgrids co-authored by four TESA members was presented at the IEEE PES conference in Abuja...</p>
+          <div class="blog-card-footer">
+            <time>Feb 28, 2025</time>
+            <a href="#" class="read-more">Read More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#134E4A,#0F766E)">
+          💼
+          <div class="blog-card-cat">Career</div>
+        </div>
+        <div class="blog-card-body">
+          <h3>Career Fair 2025: 20 Companies Set to Recruit Directly from TESA OAU</h3>
+          <p>Mark your calendars! The TESA OAU Career Fair returns on April 5th with 20 top companies ready to engage with our engineering talent pool...</p>
+          <div class="blog-card-footer">
+            <time>Feb 24, 2025</time>
+            <a href="#" class="read-more">Read More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#1E1B4B,#3730A3)">
+          🌍
+          <div class="blog-card-cat">Technology</div>
+        </div>
+        <div class="blog-card-body">
+          <h3>How TESA Members Are Using Drones to Map Erosion-Affected Communities</h3>
+          <p>An inspiring profile on a group of TESA members using UAV technology to generate detailed topographic maps for affected communities...</p>
+          <div class="blog-card-footer">
+            <time>Feb 20, 2025</time>
+            <a href="#" class="read-more">Read More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#4A1D96,#7C3AED)">
+          🎓
+          <div class="blog-card-cat">Achievement</div>
+        </div>
+        <div class="blog-card-body">
+          <h3>TESA Member Secures Full Scholarship to Stanford Engineering Program</h3>
+          <p>A final-year student and former TESA Tech Director has been awarded a fully-funded scholarship to pursue a Masters degree at Stanford...</p>
+          <div class="blog-card-footer">
+            <time>Feb 16, 2025</time>
+            <a href="#" class="read-more">Read More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,#14532D,#16A34A)">
+          ⚡
+          <div class="blog-card-cat">Research</div>
+        </div>
+        <div class="blog-card-body">
+          <h3>Green Engineering Initiative: TESA Launches Campus Sustainability Report</h3>
+          <p>TESA OAU's sustainability working group has published a comprehensive report with 30 actionable recommendations for reducing OAU's carbon footprint...</p>
+          <div class="blog-card-footer">
+            <time>Feb 12, 2025</time>
+            <a href="#" class="read-more">Read More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Back to Home -->
+  <div style="text-align:center;padding:40px 40px 80px">
+    <button onclick="showMain()" style="background:var(--blue);color:white;border:none;padding:16px 40px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif;" onmouseover="this.style.background='var(--blue-bright)'" onmouseout="this.style.background='var(--blue)'">
+      ← Back to Home
+    </button>
+  </div>
+
+  <!-- Footer duplicate for blog -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-badge">TESA</div>
+            <div class="logo-text">
+              <strong>TESA OAU</strong>
+              <span>Obafemi Awolowo University</span>
+            </div>
+          </div>
+          <p>The Technology & Engineering Students Association at Obafemi Awolowo University — building the next generation of African engineers since 1985.</p>
+          <div class="social-links">
+            <a href="#" class="social-link">𝕏</a>
+            <a href="#" class="social-link">📷</a>
+            <a href="#" class="social-link">in</a>
+            <a href="#" class="social-link">💬</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#" onclick="showMain()">Home</a></li>
+            <li><a href="#" onclick="showMain()">News</a></li>
+            <li><a href="#" onclick="showMain()">Executives</a></li>
+            <li><a href="#" onclick="showMain()">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="#">Hackathons</a></li>
+            <li><a href="#">Workshops</a></li>
+            <li><a href="#">Mentorship</a></li>
+            <li><a href="#">Tech Talks</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:tesa@oauife.edu.ng">tesa@oauife.edu.ng</a></li>
+            <li><a href="#">Faculty of Technology</a></li>
+            <li><a href="#">OAU, Ile-Ife</a></li>
+            <li><a href="#">Osun State, Nigeria</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>© 2025 TESA OAU. All rights reserved.</p>
+        <div class="oau-badge">🎓 Obafemi Awolowo University, Ile-Ife</div>
+      </div>
+    </div>
+  </footer>
+</div><!-- end #blog-page -->
+
+<script>
+  // Page switching
+  function showBlog() {
+    document.getElementById('main-page').classList.add('hidden');
+    document.getElementById('blog-page').classList.add('active');
+    window.scrollTo(0,0);
+  }
+  function showMain() {
+    document.getElementById('main-page').classList.remove('hidden');
+    document.getElementById('blog-page').classList.remove('active');
+    window.scrollTo(0,0);
+  }
+
+  // Carousel
+  function scrollCarousel(dir) {
+    const el = document.getElementById('execCarousel');
+    el.scrollBy({ left: dir * 300, behavior: 'smooth' });
+  }
+
+  // Filter
+  function filterBlog(btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Subscribe
+  function handleSubscribe() {
+    const name = document.getElementById('sub-name').value.trim();
+    const email = document.getElementById('sub-email').value.trim();
+    if (!name || !email) {
+      alert('Please fill in your name and email!');
+      return;
+    }
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    document.getElementById('sub-name').value = '';
+    document.getElementById('sub-email').value = '';
+    document.getElementById('sub-dept').value = '';
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  }
+
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    const h = document.querySelector('header');
+    if (window.scrollY > 40) {
+      h.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+    } else {
+      h.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>
